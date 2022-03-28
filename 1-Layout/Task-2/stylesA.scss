@@ -1,0 +1,42 @@
+$baseColor: red;
+$importantColor: darken($baseColor,30%);
+$warningColor:lighten($baseColor,30%);
+
+.themeButton{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.container {
+   display: flex-column;
+   font: 0.5em Arial, sans-serif;
+
+   .base {
+       background-color: $baseColor;
+   }
+   .important {
+        background-color:  $importantColor;
+   }
+   .warning {
+      background-color: $warningColor;
+   }
+   .secondaryFont {
+       font-weight: bold;
+   }
+   .box {
+       border: 1px solid black;
+       font-size: x-small;
+       padding: 5px;
+       width: 20%;
+       min-width: 40px;
+    }
+    .shadow {
+         box-shadow: -5px 5px 3px gray;
+    }
+}
+
+
+
+
+

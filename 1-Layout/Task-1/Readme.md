@@ -33,4 +33,7 @@ Resultado esperado:
 2. Once the command is executed you should be able to see the server url available:
 ![image info](./command.png)
 
+3. Final result
+![!image info](./resultado.png)
+
 ## We tried to configure the darken and lighten methods dynamically but I didnt find a way to do it, as SASS is preprocessed I was forced to use a static variable for the color selection. The nice to have would be using an input color picker. 
