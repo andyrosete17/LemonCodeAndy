@@ -18,5 +18,19 @@ Resultado esperado:
     ```
     parcel .\Task-2\index.html
     ```
-2. Once the command is executed you should be able to see the server url available:
-![image info](./command.png)
+2. Once the command is executed you should be able to see the server url available
+3. We have designed 2 diferents themes styles. To see them you have to pickle from html file
+```
+Theme A
+ <link rel="stylesheet" type="text/css" href="stylesA.scss" />
+
+Theme B
+<link rel="stylesheet" type="text/css" href="stylesB.scss" />
+```
+4. Final results
+### Theme A:
+![image info](./resultadoA.png)
+
+### Theme B:
+![image info](./resultadoB.png)
+
