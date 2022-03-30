@@ -1,0 +1,52 @@
+.container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 0.5fr 1fr 0.5fr 1.3fr;
+    width: 30%;
+    gap: 5%;
+    box-shadow: 0 0 0 20px lighten(gray, 40%);
+   min-width: 400px;
+
+    img{
+        width: 100%;
+    }
+
+    span{
+        font: 1.5em Arial, sans-serif;
+        padding: 0px 10px;
+    }
+    
+    p {
+        font: 1em Arial, sans-serif;
+    }
+    
+    div{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 5px;
+        
+        .published {
+            font-weight: bold;
+        }
+        .date {
+            color: #B5CEAA;
+            padding: 0px 5% 0 10px;
+        }
+    }
+    button{
+        font: 1.5em Arial, sans-serif;
+        color: white;
+        background-color: #79BE47;
+        width: 90%;
+        margin: 0 5% 5% 5%;
+        border: none;
+        border-radius: 2px;
+        align-self: stretch;
+        cursor: pointer;
+    }
+
+.description {
+    padding: 0px 5px;
+    color: gray;        
+    }
+}
