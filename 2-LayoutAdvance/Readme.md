@@ -12,6 +12,9 @@
 2. Once the command is executed you should be able to see the server url available
 
 
-4. Final results
+4. Final results:
+![image info](./result1.png)
+![image info](./result2.png)
+![image info](./result3.png)
 
 
