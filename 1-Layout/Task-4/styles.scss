@@ -1,29 +1,40 @@
 .container{
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto 0.5fr 1fr 0.5fr 1.3fr;
-    width: 30%;
-    gap: 5%;
+    grid-auto-rows: auto;
+    grid-template-areas: 
+    "frontImage"
+    "title"
+    "description"
+    "publishDate"
+    "moreInfoButton"
+    ;
+    width: 25%;
+    gap: 10px;
     box-shadow: 0 0 0 20px lighten(gray, 40%);
-   min-width: 400px;
+    min-width: 400px;
 
     img{
         width: 100%;
+        grid-area: frontImage;
     }
 
     span{
         font: 1.5em Arial, sans-serif;
         padding: 0px 10px;
+        grid-area: title
     }
     
     p {
         font: 1em Arial, sans-serif;
+        grid-area: description;
     }
     
     div{
         display: flex;
         justify-content: flex-end;
         padding-right: 5px;
+        grid-area: publishDate;
         
         .published {
             font-weight: bold;
@@ -41,8 +52,8 @@
         margin: 0 5% 5% 5%;
         border: none;
         border-radius: 2px;
-        align-self: stretch;
         cursor: pointer;
+        grid-area: moreInfoButton;
     }
 
 .description {
