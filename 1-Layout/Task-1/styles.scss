@@ -1,4 +1,4 @@
-$selectedColor: #583585;
+@import 'constants.scss';
 
 .container {
    display: flex;
@@ -8,14 +8,20 @@ $selectedColor: #583585;
 
 .base-color {
     background-color: $selectedColor;
+    color: white;
 }
 
 .box {
-    color: lightgray;
     font-size: x-small;
     border-radius: 2px;
     height: fit-content;
     padding: 5px;
+    width: 50px;  
+}
+
+.box-font-color {
+    color: lightgray;
+
 }
 
 .color-title {

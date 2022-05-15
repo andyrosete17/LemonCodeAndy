@@ -6,6 +6,7 @@ p {
 }
 .menuButton {
     min-width: 100px;
+    width: 100%;
     background-color: cadetblue;
     height: 3em;
     color: whitesmoke;

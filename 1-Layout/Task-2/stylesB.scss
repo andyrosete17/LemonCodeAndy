@@ -1,19 +1,16 @@
-$baseColor: blue;
-$importantColor: darken($baseColor,30%);
-$warningColor:lighten($baseColor,30%);
+@import 'constants.scss';
+@import 'common.scss';
 
-.themeButton{
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
+$importantColor: darken($baseColorBlue,30%);
+$warningColor:lighten($baseColorBlue,30%);
+
+
 .container {
    display: flex-column;
    font: 0.3em Arial, sans-serif;
 
    .base {
-       background-color: $baseColor;
+       background-color: $baseColorBlue;
    }
    .important {
         background-color:  $importantColor;
@@ -21,15 +18,9 @@ $warningColor:lighten($baseColor,30%);
    .warning {
       background-color: $warningColor;
    }
-   .box {
-       border: 1px solid black;
-       font-size: x-small;
-       border-radius: 2px;
-       padding: 5px;
-       width: 20%;
-       min-width: 40px;
-    }
+
     .shadow {
+        font: 2em cursive;
          box-shadow: 5px 5px 3px gray;
     }
 }
