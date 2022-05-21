@@ -1,0 +1,34 @@
+@import 'constants.scss';
+@import 'common.scss';
+
+$importantColor: darken($baseColorRed,30%);
+$warningColor:lighten($baseColorRed,30%);
+
+.container {    
+   display: flex-column;
+   font: 0.5em Arial, sans-serif;
+
+   .base {
+       background-color: $baseColorRed;
+   }
+   .important {
+        background-color:  $importantColor;
+   }
+   .warning {
+      background-color: $warningColor;
+   }
+   .secondaryFont {
+       font-family: monospace;
+       font-weight: bold;
+   }
+ 
+    .shadow {
+        font: 1.2em cursive;
+         box-shadow: -5px 5px 3px gray;
+    }
+}
+
+
+
+
+

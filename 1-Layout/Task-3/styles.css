@@ -1,0 +1,25 @@
+p {
+    font: bold 1em Arial, sans-serif;
+}
+.container{
+    display: flex;
+}
+.menuButton {
+    min-width: 100px;
+    width: 100%;
+    background-color: cadetblue;
+    height: 3em;
+    color: whitesmoke;
+    font: 1em Arial, sans-serif;
+}
+.menuButton:hover{
+    background-color: darkcyan;
+    cursor: pointer;
+}
+@media screen and (max-width: 430px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        background-color: aqua;
+    }
+}

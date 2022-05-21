@@ -1,0 +1,63 @@
+.container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: 
+    "frontImage"
+    "title"
+    "description"
+    "publishDate"
+    "moreInfoButton"
+    ;
+    width: 25%;
+    gap: 10px;
+    box-shadow: 0 0 0 20px lighten(gray, 40%);
+    min-width: 400px;
+
+    img{
+        width: 100%;
+        grid-area: frontImage;
+    }
+
+    span{
+        font: 1.5em Arial, sans-serif;
+        padding: 0px 10px;
+        grid-area: title
+    }
+    
+    p {
+        font: 1em Arial, sans-serif;
+        grid-area: description;
+    }
+    
+    div{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 5px;
+        grid-area: publishDate;
+        
+        .published {
+            font-weight: bold;
+        }
+        .date {
+            color: #B5CEAA;
+            padding: 0px 5% 0 10px;
+        }
+    }
+    button{
+        font: 1.5em Arial, sans-serif;
+        color: white;
+        background-color: #79BE47;
+        width: 90%;
+        margin: 0 5% 5% 5%;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        grid-area: moreInfoButton;
+    }
+
+.description {
+    padding: 0px 5px;
+    color: gray;        
+    }
+}
