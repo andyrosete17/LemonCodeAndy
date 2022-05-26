@@ -12,5 +12,6 @@ import "./01_deliverables/09-SlotMachine/index.js";
 // import "./00 practice/02-Values/02-values.js";
 // import "./00 practice/03-Califications/califications.js";
 // import "./00 practice/04-Check Arguments/arguments.js";
+// import "./00 practice/05-DeepEqual/index.js";
 
-console.log("Thats all follks.");
+console.log("Thats all folks.");
