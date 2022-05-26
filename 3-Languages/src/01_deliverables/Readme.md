@@ -85,6 +85,9 @@ function merge(source, target) {
 }
 ```
 
+# Importante
+ En el caso del merge se ha utilizado genericos aplicando la funcionalidad de intersection. Se declaran variables genericas indicando que extienden del tipo de datos de objectos y de esta manera se  hace posible que 
+
 ### 4. Read Books
 
 Crea una función isBookRead que reciba una lista de libros y un título y devuelva si se ha leído o no dicho libro.
