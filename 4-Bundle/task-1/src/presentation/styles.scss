@@ -1,0 +1,13 @@
+$color: lightgreen;
+$size: 50%;
+
+.colorFont {
+  color: lightcoral;
+}
+h1 {
+  background: $color;
+}
+
+img {
+  width: $size;
+}
