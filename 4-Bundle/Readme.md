@@ -159,9 +159,9 @@ test: /\.scss$/,
 ```
 
 ### (1)- es la configuración que se usa cuando queremos trabajar con múltiples ficheros css
+
 Export locals convention es basicamente para convertir los ficheros que tienen – a camelCase
 localIdenName: nombre de la clase que aparece luego
-
 
 ### Luego para utilizar los ficheros si queremos evitarnos colisión o si queremos tener mejor control de los estiles hacemos algo como esto (importarlos bajo el nombre de classes)
 
@@ -172,7 +172,7 @@ import classes from "./averageComponentStyles.scss";
 ### y lo usas como
 
 ```js
-  <p className={classes.resultBackground}></p>
+<p className={classes.resultBackground}></p>
 ```
 
 ### Plugin para añadir variables de entorno .env
@@ -180,13 +180,17 @@ import classes from "./averageComponentStyles.scss";
 ```js
 yarn add dotenv-webpack –-dev
 ```
+
 ### se genera el fichero de variables de entorno
+
 ![image info](./envVariables.png)
 
-### para usarlo se añade a webpack 
+### para usarlo se añade a webpack
+
 ```
 const dotEnv = require("dotenv-webpack");
 ```
+
 ### y luego lo usas en los plugins
 
 ```js
@@ -199,15 +203,19 @@ plugins: [
     }),
 
 ```
+
 ### Para ejecutar el proyecto se puede usar el
+
 ```ts
 yarn add lite-server -g (para instalarlo en global)
 ```
 
 ## Luego para ejecutarlo es solo poner en el terminal desde la carpeta dist (donde se genera el codigo que va a la web)
+
 ```p
 lite-server
 ```
+
 ### Para ir hacienda control de errores, chequeo de tipos (para typescript) todo el tiempo se usa este paquete
 
 ```
@@ -215,6 +223,7 @@ yarn add npm-run-all --dev
 ```
 
 ### Para usarlo luego en el package.json se debe añadir
+
 Run-p seria para ejecutar todo en npm-run all
 El -l es para marcar con colores los logs
 
@@ -238,54 +247,115 @@ El -l es para marcar con colores los logs
 ### Para que la aplicación vaya siempre al contexto del src correcto se usa la línea path que es un método de node
 
 ```js
+const path = require("path");
+```
+
+### y en el module.export declaro el contexto de trabajo
+
+```js
+module.exports = {
+  context: path.resolve(__dirname, "./src"),
+  resolve: {
+```
+
+### Si instalas react y typescript pero tienes también ficheros ts debes poner en el module.rules
+
+### Test: /\.tsx?$/ (indicando que aceptas ts y tsx)
+
+```js
+module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+```
+
+### y luego en el module.exports.resolve le dices que extensiones buscara
+
+```js
+module.exports = {
+  context: path.resolve(__dirname, "./src"),
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"],
+  },
+```
+
+### Si solo queremos ver los errores en los logs
+
+```js
+devServer: {
+    port: 8081,
+    devMiddleware: {
+      stats: "errors-only",
+    },
+  },
+
+```
+
+### Webpack merge para combinar webpacks configs
+
+```js
+yarn add webpack-merge –-dev
+```
+
+### para usarlo
+
+```js
+const common = require("./webpack.common.js"); // de este vas a heredar
+const { merge } = require("webpack-merge");
 ```
 
 ```js
-
+module.exports = merge(common, { //aqui todo lo que quieras poner nuevo
+  module: {
+    rules: [
 ```
 
-y en el module.export declaro el contexto de trabajo
+### En webpack para depurar código en el navegador se puede usar el eval-source-map (solo para testing)
 
-module.exports = {
+```js
+ plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].css",
+    }),
+    new dotEnv({
+      path: "./prod.env",
+    }),
+  ],
+  devtool: "eval-source-map", //para en prod poder mirar codigo en el source webpack
+```
 
-context:path.resolve(\_\_dirname, &quot;./src&quot;),
+### Para hacer análisis se puede usar el webpack analyzer
 
-resolve: {
+```js
+yarn add webpack-bundle-analyzer –-dev
+```
 
-Si instalas react y typescript pero tienes también ficheros ts debes poner en el module.rules
+### para usarlo se genera un fichero webpack.perf.js (el perf es inventado) con una configuración parecida a esta (en este caso se quiere hacer el análisis en en el webpack de producción)
 
-Test: /\.tsx?$/ (indicando que aceptas ts y tsx)
+```js
+const { merge } = require("webpack-merge");
+const prod = require("./webpack.prod.js");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-module: {
+module.exports = merge(prod, {
+  plugins: [new BundleAnalyzerPlugin()],
+});
+```
 
-    rules: [
+### en el package.json se añadiría una script para ejecutarlo
+```js
+ "build:perf": "yarn type-check && webpack --config webpack.perf.js"
+```
 
-      {
+## Extras de babel
 
-        test: /\.tsx?$/,
+### También generamos un .babelrc, este fichero igualmente esta relacionado con las configuraciones de babel. Babel es como el transpilador, y debe conocer los settings de lo que se quiere interpretar, en este caso preset-env (los presets standars de babel), preset-react (para que interprete que el código es de react) y lo mismo con preset-typescript
 
-        exclude: /node\_modules/,
-
-        loader:&quot;babel-loader&quot;,
-
-y luego en el module.exports.resolve le dices que extensiones buscara
-
-module.exports = {
-
-context:path.resolve(\_\_dirname, &quot;./src&quot;),
-
-resolve: {
-
-    extensions: [&quot;.js&quot;, &quot;.ts&quot;, &quot;.tsx&quot;],
-
-},
-
-Extras de babel
-
-También generamos un .babelrc, este fichero igualmente esta relacionado con las configuraciones de babel. Babel es como el transpilador, y debe conocer los settings de lo que se quiere interpretar, en este caso preset-env (los presets standars de babel), preset-react (para que interprete que el código es de react) y lo mismo con preset-typescript
-
+```js
 {
-
-&quot;presets&quot;: [&quot;@babel/preset-env&quot;, &quot;@babel/preset-react&quot;, &quot;@babel/preset-typescript&quot;]
-
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
 }
+
+```

@@ -34,5 +34,5 @@ module.exports = merge(common, {
       path: "./prod.env",
     }),
   ],
-  //   devtool: "eval-source-map", //para en prod poder mirar codigo en el source webpack
+  devtool: "eval-source-map", //para en prod poder mirar codigo en el source webpack
 });
