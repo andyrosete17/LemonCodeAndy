@@ -345,6 +345,7 @@ module.exports = merge(prod, {
 ```
 
 ### en el package.json se añadiría una script para ejecutarlo
+
 ```js
  "build:perf": "yarn type-check && webpack --config webpack.perf.js"
 ```
@@ -358,4 +359,96 @@ module.exports = merge(prod, {
   "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
 }
 
+```
+
+# Para trabajar con parcel
+
+### Primero se debe instalar parcel en el proyecto
+
+```js
+yarn add parcel --dev
+```
+
+### En el package.json se borra la etiqueta main
+
+```js
+{
+  "name": "task-2",
+  "version": "1.0.0",
+  "main": "index.js",
+```
+
+### Si trabajamos con react se debe añadir el punto de entrada en el index.html
+
+```js
+<script type="module" src="./index.tsx"></script>
+```
+
+### Además en el tsconfig.json añadimos la ruta de entrada (base url)
+
+```js
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "noLib": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "baseUrl": "./src/"  // <=====Este
+```
+
+### Si tienes problemas con el tema de colision de estilos puede usar el paquete de postcss module
+
+```js
+yarn add postcss-modules --dev
+```
+
+### Luego se debe crear un fichero .postcssrc y añadir la siguiente configuración
+
+```js
+{
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "generateScopedName": "_[name]__[local]"
+    }
+  }
+}
+```
+
+### tener en cuenta que si trabajamos con sass debemos tener el fichero declaration.d.ts con el valor de sass añadido
+
+```js
+declare module "*.scss";
+declare module "*.png"; // Si utilizamos tema de imagenes directamente en el html
+```
+
+### Luego para utilizarlo como se hizo anteriormente se importa el css que quieras utilizar 
+```js
+import * as classes from "./hello.style.scss";
+
+export const HelloComponent: React.FC = () => {
+  return <h1 className={classes.myBackground}>Hello from reacts</h1>;
+};
+```
+
+### Para usar variables de entorno con parcel 
+```js
+yarn add dotenv
+```
+
+### Luego debemos generar un fichero config.ts con la configuración propia (esta va en la raiz del proyecto)
+
+```js
+import dotenv from "dotenv";
+const result = dotenv.config();
+
+export const { PORT } = result.parsed;
 ```
