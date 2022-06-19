@@ -4,8 +4,11 @@
   "license": "MIT",
   "source": "src/index.html",
   "scripts": {
-    "start": "run-p -l type-check:watch start:dev",
-    "start:dev": "rimraf dist && parcel",
+    "start-dev": "run-p -l type-check:watch start",
+    "start-prod": "run-p -l type-check:watch start ",
+    "node-dev": "SET NODE_ENV=development",
+    "node-prod": "SET NODE_ENV=production",
+    "start": "rimraf dist && parcel",
     "build": "rimraf dist && parcel build",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn run type-check -- --watch"
