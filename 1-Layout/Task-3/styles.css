@@ -3,6 +3,7 @@ p {
 }
 .container {
   display: flex;
+  justify-content: space-around;
 }
 .menuButton {
   min-width: 100px;
@@ -12,9 +13,14 @@ p {
   font: 1em Arial, sans-serif;
 }
 .navBar {
+  flex-direction: row;
   background-color: cadetblue;
 }
-.menuButton:hover {
+.menuTitle {
+  padding: 14px;
+  display: inline-block;
+}
+.menuTitle:hover {
   background-color: darkcyan;
   cursor: pointer;
 }
@@ -22,6 +28,10 @@ p {
   .container {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+  }
+  .menuTitle {
+    height: 3em;
+    width: 100%;
+    padding: 0px;
   }
 }
