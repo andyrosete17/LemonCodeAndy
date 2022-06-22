@@ -1,0 +1,12 @@
+@mixin generate-row($boxColor, $textColor: white) {
+  @for $i from 1 through 4 {
+    .darken-#{$i} {
+      background-color: darken($boxColor, $i * 5%);
+      color: lighten($textColor, $i * 3%);
+    }
+    .lighten-#{$i} {
+      background-color: lighten($boxColor, $i * 5%);
+      color: darken($textColor, $i * 5%);
+    }
+  }
+}

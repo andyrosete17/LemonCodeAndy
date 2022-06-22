@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "ej1": "parcel ./Task-1/index.html",
+    "ej2": "parcel ./Task-2/index.html",
+    "ej4": "parcel ./Task-4/index.html"
+  },
   "devDependencies": {
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "parcel": "^2.6.1"
   }
 }

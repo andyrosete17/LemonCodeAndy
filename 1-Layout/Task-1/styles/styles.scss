@@ -1,0 +1,41 @@
+@use "constants.scss" as constant;
+@use "mixins";
+
+.container {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.base-color {
+  background-color: constant.$selectedColor;
+  color: white;
+}
+
+.box {
+  font-size: x-small;
+  border-radius: 2px;
+  height: fit-content;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  flex-grow: 1;
+}
+
+.boxBase {
+  flex-grow: 1.5;
+}
+
+.color-title {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.color-preview {
+  width: 1em;
+  height: 1em;
+  background-color: constant.$selectedColor;
+}
+
+@include mixins.generate-row(constant.$selectedColor, lightgray);
