@@ -2,5 +2,8 @@
   "name": "task1",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.6.1"
+  }
 }

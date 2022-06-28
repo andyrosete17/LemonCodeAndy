@@ -1,4 +1,6 @@
-console.log("==== Practice  =========== 03-califications ===Start =======================");
+console.log(
+  "==== Practice  =========== 03-califications ===Start ======================="
+);
 const eso2o = {
   David: 8.25,
   Maria: 9.5,
@@ -29,19 +31,19 @@ function values(obj) {
   return result;
 }
 
-function selectAverage(average) {
+function selectAverage(average: number): void {
   console.log("The average would be=>", average);
   if (average === 10) {
     console.log("Matrícula de Honor = 10");
-  } else if (average < 10 && average > 9) {
+  } else if (average < 10 && average >= 9) {
     console.log("Sobresaliente = entre 9 y 10");
-  } else if (average < 9 && average > 7) {
+  } else if (average < 9 && average >= 7) {
     console.log("Notable = entre 7 y 9");
-  } else if (average < 7 && average > 6) {
+  } else if (average < 7 && average >= 6) {
     console.log("Bien = entre 6 y 7");
-  } else if (average < 6 && average > 5) {
+  } else if (average < 6 && average >= 5) {
     console.log("Suficiente = entre 5 y 6");
-  } else if (average < 5 && average > 4) {
+  } else if (average < 5 && average >= 4) {
     console.log("Insuficiente = entre 4 y 5");
   } else {
     console.log("Muy deficiente = por debajo de 4");
@@ -49,4 +51,6 @@ function selectAverage(average) {
 }
 
 printAverage(eso2o);
-console.log("==== Practice  =========== 03-califications ===End ======================= \n\n\n");
+console.log(
+  "==== Practice  =========== 03-califications ===End ======================= \n\n\n"
+);
