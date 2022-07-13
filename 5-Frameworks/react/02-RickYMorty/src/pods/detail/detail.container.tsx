@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { MemberDetailEntity, createDefaultMemberDetail } from "./detail.vm";
 import { DetailComponent } from "./detail.component";
-import { MyContextProvider } from "@/core/context/context";
+import { ApiCall } from "./api.details";
 
 interface Props {
   id: string;
@@ -13,16 +13,13 @@ export const DetailContainer: FC<Props> = (props) => {
     createDefaultMemberDetail()
   );
 
+  const fetchAPI = async () => {
+    const response = await ApiCall(id);
+    setMember(response);
+  };
+
   React.useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.status);
-        } else {
-          return response.json();
-        }
-      })
-      .then((json) => setMember(json));
+    fetchAPI();
   }, []);
 
   return <DetailComponent member={member} />;

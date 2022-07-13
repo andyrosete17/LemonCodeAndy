@@ -15,7 +15,7 @@ export interface InfoEntity {
   prev: string;
 }
 export interface IApiResponse {
-  memberEntity: MemberEntity[];
+  results: MemberEntity[];
   info: InfoEntity;
 }
 
