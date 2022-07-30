@@ -16,12 +16,8 @@ export const ListContainer: FC = () => {
   }, [debouncedCompanyFilter]);
 
   useEffect(() => {
-    console.log('se cambia la company del context con valor', company)
+    console.log("se cambia la company del context con valor", company);
   }, [company]);
 
-  return (
-    <ListComponent
-      members={members}
-    />
-  );
+  return <ListComponent members={members} />;
 };

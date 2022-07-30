@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { MemberDetailEntity, createDefaultMemberDetail } from "./detail.vm";
 import { DetailComponent } from "./detail.component";
-import { MyContextProvider } from "@/core/context/context";
 
 interface Props {
   id: string;
@@ -9,7 +8,6 @@ interface Props {
 
 export const DetailContainer: FC<Props> = (props) => {
   const { id } = props;
-  console.log("el id que entra es", id);
   const [member, setMember] = React.useState<MemberDetailEntity>(
     createDefaultMemberDetail()
   );
