@@ -1,14 +1,7 @@
 import styled from "styled-components";
 
 export const ListContainer = styled.div`
-  display: grid;
-  grid-template-columns: 80px 1fr 3fr;
-  grid-template-rows: 20px;
-  grid-auto-rows: 80px;
-  grid-gap: 10px 5px;
-  > img {
-    width: 80px;
-  }
+
 `;
 
 export const ListHeader = styled.span`

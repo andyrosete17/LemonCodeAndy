@@ -21,7 +21,6 @@ export const ListContainer: FC = () => {
 
   const fethAPI = async () => {
     const response = await ApiCall(character, navigationPage);
-    console.log("esta es la response", response);
     setPageInfo(response.info);
     setMembers(response.results);
   };

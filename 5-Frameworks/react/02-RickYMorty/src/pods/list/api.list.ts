@@ -5,7 +5,6 @@ export const ApiCall = async (
   navigationPage: number
 ): Promise<IApiResponse> => {
   const url = `https://rickandmortyapi.com/api/character/?name=${character}&page=${navigationPage}`;
-  console.log("vamos a llamar ahora con los datos ", character, navigationPage);
   let results: IApiResponse;
  await  fetch(url)
     .then((response) => {
