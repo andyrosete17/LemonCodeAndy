@@ -1,0 +1,36 @@
+body {
+  margin: 0px;
+  padding: 0px;    
+}
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 150px 25px 1fr;
+  grid-template-rows: 100px 1fr 100px;
+  grid-template-areas:
+      "cabecera cabecera cabecera"
+      "mimenu . mibody"
+      "pie pie pie"
+}
+
+header {
+  background-color: indianred;
+  grid-area: cabecera;
+}
+
+main {
+  background-color: skyblue;
+  grid-area: mibody;
+}
+
+nav {
+  background-color: goldenrod;
+  grid-area: mimenu;
+  
+}
+
+footer {
+  background-color: blue;
+  grid-area: pie;
+}

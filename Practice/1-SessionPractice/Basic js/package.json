@@ -1,0 +1,19 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["client"],
+  "dependencies": {
+    "csv-writer": "^1.6.0"
+  },
+  "scripts": {
+    "client": "yarn workspace client start",
+    "build": "yarn workspaces run build"
+  },
+  
+  "resolutions": {
+		"babel-loader": "8.1.0"
+	}
+}
