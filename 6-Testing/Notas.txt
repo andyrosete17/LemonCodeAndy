@@ -1,0 +1,165 @@
+// spy => va por parametros (para modificar comportamiento de funciones)
+// stub => va importado o para metodos globales como los de window (clearInterval)(para elementos o funciones importadas) (para modificar comportamiento de funciones)
+// mock => es mas agresivo
+
+
+
+// spy es el caso mas simple,
+// se utiliza cuando se pasa como parametro de entrada para sustituir una implementacion real
+
+// en el caso de que el metodo llegue desde una importacion externa, hay que mockear la implementacion
+// para eso se hace el stub, se importa la libreria que se importa en este caseo business
+
+// y con el spyOn le decimos que queremos espiar y el metodo
+// con el stub no se sustituye la implementacion real asi que se estaría llamando
+// se puede usar el mockImplementation donde le pasas que quieres que ejecute
+// const isLowerThan = jest
+//   .spyOn(business, 'isLowerThan')
+//   .mockImplementation(() => {
+//     console.log('the method was executed');
+//   }); // stub
+
+
+
+Para usar el Jsdom para poder ejecutar test de componentes instalar
+npm install --save-dev jest-environment-jsdom
+ para configurarlo en jest.js
+
+ module.exports = {
+  rootDir: '../../',
+  verbose: true,
+  restoreMocks: true,
+  testEnvironment: 'jsdom',
+};
+
+
+Ejemplo
+
+
+describe('SayHello component', () => {
+  it('should display the person name', () => {
+    // Arrange
+    const person = 'Jhon';
+
+    // Act
+    const { getByText } = render(<SayHello person={person} />);
+
+    // Assert
+    const element = getByText('Hello Jhon');
+    expect(element).not.toBeNull();
+    expect(element.tagName).toEqual('H1');
+  });
+});
+
+
+
+Otra libreria de testing way (https://github.com/testing-library/jest-dom)
+npm install @testing-library/jest-dom --save-dev
+
+para instalarlo agregas a la carpeta test un fichero
+pones el import
+import '@testing-library/jest-dom'
+
+y luego en en el jest.js lo añades y ya puedes usarlo
+
+
+module.exports = {
+  rootDir: '../../',
+  verbose: true,
+  restoreMocks: true,
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/config/test/setup-after.ts'],
+};
+
+El fireEvent suele fallar asi que una solucion es esta libreria
+
+npm install @testing-library/user-event @testing-library/dom --save-dev
+
+
+estryuctura de siempre
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { NameCollection } from './name-collection';
+
+describe('NameCollection component specs', () => {
+  it('', () => {
+    // Arrange
+    // Act
+    // Assert
+  });
+});
+
+
+En el caso de jest
+
+Get => codigo syncrono y estaria en el dom
+Find => para codigo asyncrono y estaría en el dom despues de pasado un tiempo
+Query => es para comprobar que no existe en el dom se puede usar en sincrono y asincrono
+
+
+Si tienes temas de routers
+
+export const Router: React.FunctionComponent = () => {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<NameCollection />} />
+        <Route path="users/:name" element={<UserEdit />} />
+      </Routes>
+    </HashRouter>
+  );
+};
+
+
+para que funcione tienes que hacer un compoennte que este dentro
+es decir un wrapper
+
+en el test 
+const renderWithRouter = (component) =>
+  render(
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={component} />
+        <Route path="users/:name" element={<UserEdit />} />
+      </Routes>
+    </HashRouter>
+  );
+
+
+  y luego lo usas asi
+  describe('NameCollection component specs', () => {
+  it(`should display a list with one item when it mounts the component and it
+      resolves the async call`, async () => {
+    // Arrange
+    const names = ['John Doe'];
+    const stub = jest.spyOn(api, 'getNameCollection').mockResolvedValue(names);
+
+    // Act
+    renderWithRouter(<NameCollection />);
+
+
+
+Con jest se puede skipear o focus en los test
+it....
+xit  => ignorar/skip
+fit => focus
+
+
+Para temas asincronos hay que usar el waitFor
+import { act, render, renderHook, waitFor } from '@testing-library/react';
+
+ await waitFor(() => {
+      expect(result.current.user).toEqual(adminUser);
+    });
+
+
+Para temas de timers si se testea pollings etc se pueden usar los fakes timers. Se configura todo por dentro
+
+     beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach( () => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  })
