@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <div>
-            <img :src="member.avatar_url" alt="" />
+            <img :src="member.avatar_url" alt=""  class="member-image"/>
         </div>
         <div v-if="member">
             <div class="member-details">

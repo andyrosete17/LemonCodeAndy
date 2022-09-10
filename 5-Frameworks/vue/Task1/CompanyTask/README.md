@@ -1,46 +1,35 @@
-# CompanyTask
+# 01 VUE laboratory 1
 
-This template should help get you started developing with Vue 3 in Vite.
+## Summary
 
-## Recommended IDE Setup
+### Filter by company name
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The aim of this exercise is get Github organization list by companies. 
 
-## Type Support for `.vue` Imports in TS
+## Acceptance Criterias
+- Create an app that displays a list of Lemoncode members on Github, using the Github API.
+- Add a search field to search by organization name, this field defaults to "Lemoncode".
+- And a button to search when pressed.
+- Show at least one photo of each member and their name when you get a response.
+- If no member or such organization is found, display an error message.
+- The user can type another organization name, for example, "microsoft"; and when you press the search button, it shows you the members of that organization.
+- By clicking on one of the members, navigate to a detail view of that member.
+- In the detail view, show the member's photo, her name, email, bio, and organization name.
+- When returning to the list view, the list that was there should continue to be displayed, without having to perform the search again.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Result:
+### List view
+![alt-text](./public/list.png)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Details view
+![alt-text](./public/details.png)
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### Other Company  view
+![alt-text](./public/microsoft.png)
 
-## Customize configuration
+### Error view
+![alt-text](./public/error.png)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## How to run the app
+- Install dependencies (yarn/npm i)
+- run the project (yarn dev / npm run dev)
