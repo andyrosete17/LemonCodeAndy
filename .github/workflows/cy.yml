@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: '/6-Testing/Lab'
+        working-directory: '6-Testing/Lab'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -15,4 +15,18 @@ jobs:
         run: npm ci
       - name: Tests
         run: npm test
+
+  # ci-e2e-tests:
+  #   runs-on: ubuntu-latest
+  #   needs: [ci-unit-tests]
+  #   defaults:
+  #     run:
+  #       working-directory: '/6-Testing/Lab'
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+  #     - name: Install
+  #       run: npm ci
+  #     - name: Tests e2e
+  #       run: npm run test:e2e:ci
 
