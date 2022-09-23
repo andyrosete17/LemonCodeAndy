@@ -12,6 +12,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "types": ["cypress", "node", "@testing-library/cypress"],
     "baseUrl": "./src/",
     "paths": {
       "common-app": ["common-app"],
@@ -22,5 +23,5 @@
       "scenes": ["scenes"]
     }
   },
-  "include": ["./src/**/*", "./config/test/setup.ts", "./global.types.d.ts"]
+  "include": ["./src/**/*", "./config/test/setup.ts", "./global.types.d.ts, **/*.ts"]
 }

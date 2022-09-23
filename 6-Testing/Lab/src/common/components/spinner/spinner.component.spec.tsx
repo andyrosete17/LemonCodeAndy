@@ -45,7 +45,6 @@ describe('spinner component spec', () => {
     // Act
     render(<SpinnerComponent />);
     const presentation = screen.getByRole('presentation');
-    screen.debug();
 
     // Assert
     expect(promiseTrackerStub).toHaveBeenCalled();
