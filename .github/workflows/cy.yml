@@ -12,14 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install
-        run:  |
-          if [ -e yarn.lock ]; then
-          yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
+        run: npm ci
       - name: Tests
         run: npm test
 
@@ -29,15 +22,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Install
-        run: |
-          if [ -e yarn.lock ]; then
-          yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
       - name: Tests e2e
         run: npm run test:e2e:ci
       - name: Upload screenshots when specs fail
