@@ -23,6 +23,7 @@
       "scenes": ["scenes"]
     }
   },
+  "types": ["node", "cypress", "jest"],
   "include": [
     "./src/**/*",
     "./config/test/setup.ts",
