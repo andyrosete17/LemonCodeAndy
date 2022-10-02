@@ -12,7 +12,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "types": ["jest"],
+    "types": ["cypress", "node", "jest"],
     "baseUrl": "./src/",
     "paths": {
       "common-app": ["common-app"],
