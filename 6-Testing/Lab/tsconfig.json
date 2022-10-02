@@ -12,6 +12,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "types": ["jest"],
     "baseUrl": "./src/",
     "paths": {
       "common-app": ["common-app"],
@@ -22,7 +23,6 @@
       "scenes": ["scenes"]
     }
   },
-  "exclude": ["cypress"],
   "include": ["./src/**/*", "./config/test/setup.ts", "./global.types.d.ts"],
 
 }
