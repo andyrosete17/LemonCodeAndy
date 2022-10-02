@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Install
         run: npm ci
-      - name: Tests
+      - name: Tests lunched
         run: npm test
 
   ci-e2e-tests:
@@ -22,7 +22,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Tests e2e
+      - name: Install
+        run: npm ci
+      - name: Tests e2e lunched
         run: npm run test:e2e:ci
       - name: Upload screenshots when specs fail
         if: ${{ failure()}}
