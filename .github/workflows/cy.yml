@@ -12,9 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install
-        run: npm ci
+        run: yarn ci
       - name: Tests lunched
-        run: npm test
+        run: yarn test
 
   ci-e2e-tests:
     runs-on: ubuntu-latest
@@ -23,9 +23,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install
-        run: npm ci
+        run: yarn ci
       - name: Tests e2e lunched
-        run: npm run test:e2e:ci
+        run: yarn test:e2e:ci
       - name: Upload screenshots when specs fail
         if: ${{ failure()}}
         uses: actions/upload-artifact@v2
