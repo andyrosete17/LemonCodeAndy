@@ -3,7 +3,6 @@
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node", "@testing-library/cypress", "./support"],
-    "isolatedModules": false
   },
-  "include": ["**/*.ts", "../node_modules/cypress"]
+  "include": ["**/*.ts"]
 }
