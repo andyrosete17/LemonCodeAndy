@@ -12,7 +12,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "modulePathIgnorePatterns": ["<rootDir>/cypress"],
     "baseUrl": "./src/",
     "paths": {
       "common-app": ["common-app"],
