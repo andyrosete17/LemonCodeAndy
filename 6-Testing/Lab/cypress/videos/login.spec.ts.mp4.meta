@@ -1,0 +1,21 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=5068
+END=15823
+title=Login specs visit the login page
+[CHAPTER]
+TIMEBASE=1/1000
+START=22918
+END=26610
+title=Login specs should name input has the focus when it clicks on it
+[CHAPTER]
+TIMEBASE=1/1000
+START=23370
+END=30309
+title=Login specs should show an error with a message when type invalid credentials
+[CHAPTER]
+TIMEBASE=1/1000
+START=33618
+END=37266
+title=Login specs should navigate to submodule when credentials are valid

@@ -53,7 +53,6 @@ describe('Confirmation Dialog component', () => {
     });
 
     const childrenText = screen.getByText(/test children/i);
-    screen.debug();
 
     // Assert
     expect(closeButton).toBeInTheDocument();
@@ -73,7 +72,6 @@ describe('Confirmation Dialog component', () => {
     });
 
     await userEvent.click(closeButton);
-    screen.debug();
 
     // Assert
     expect(closeButton).toBeInTheDocument();
@@ -93,7 +91,6 @@ describe('Confirmation Dialog component', () => {
     });
 
     await userEvent.click(acceptButton);
-    screen.debug();
 
     // Assert
     expect(acceptButton).toBeInTheDocument();
