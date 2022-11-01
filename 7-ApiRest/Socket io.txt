@@ -1,0 +1,9 @@
+Socket io
+
+cliente
+npm install socket.io-client --save
+
+
+servidor
+npm install socket.io --save
+

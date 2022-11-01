@@ -1,0 +1,143 @@
+Para instalar cypress
+
+npm install cypress --save-dev
+
+
+Para instalar el testing librry pa cypress
+npm install @testing-library/cypress --save-dev
+
+se añade al tsconfig de la parte de cypress
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node", "@testing-library/cypress"]
+  },
+  "include": ["**/*.ts"]
+}
+
+Se añada al support de cypress
+import '@testing-library/cypress/add-commands';
+
+Para crear comandos propios en plan si queremos hacer login siempre y tal
+
+Creamos un fichero de commands.ts en support de cypress
+Cypress.Commands.add(
+  'loadAndVisit',
+  (apiPath: string, routePath: string, fixture?: string) => {
+    Boolean(fixture)
+      ? cy.intercept('GET', apiPath, { fixture }).as('load')
+      : cy.intercept('GET', apiPath).as('load');
+
+    cy.visit(routePath);
+    cy.wait('@load');
+  }
+);
+
+
+En el e2e lo iumportamos
+import '@testing-library/cypress/add-commands';
+import './commands';
+
+Creamos tambien un index.d.ts y lo declaramos dentro
+
+declare namespace Cypress {
+  interface Chainable {
+    loadAndVisit(
+      apiPath: string,
+      routePath: string,
+      fixture?: string
+    ): Chainable<Element>;
+  }
+}
+
+
+
+y luego en el tsconfig lo añadimos
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node", "@testing-library/cypress", "./support"]
+  },
+  "include": ["**/*.ts"]
+}
+
+
+y ya podriamosuysarlo
+ it('should fetch two hotels when visit /hotel-collection url. Getting hotels from intercept', () => {
+    // Arrange
+    // cy.intercept('GET', '/api/hotels', { fixture: 'hotels.json' }).as(
+    //   'fetchHotels'
+    // );
+
+    // Act
+    cy.loadAndVisit('/api/hotels', '/hotel-collection', 'hotels.json');  // ESto
+    // cy.visit('/hotel-collection');
+
+    // Assert
+    // cy.wait('@fetchHotels');
+    cy.findAllByRole('listitem').should('have.length', 2);
+  });
+
+
+
+  Para la parte de git esto despues de crear la rama
+git init  // crea el repo en local
+git remote add origin git@github.com...  // para usar el repo remoto
+git add .
+git commit -m "add project with tests"
+git push -u origin main o master o dev la que sea
+
+Se hace luego una rama nueva para poder ejecutar con el evento de PR
+Se crea luego la carpta en la raiz .github/workflows/ci-e2e.yml
+y se añaden los eventos que queremos disparar
+name: CI e2e workflow
+
+on: pull_request
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm ci
+      - name: Tests e2e
+        run: npm run test:e2e:ci
+
+
+Se hace push a la rama nueva para cuando se abra la pr se ejecute
+
+se crea la pr
+y en el panel de acciones se debe ejecutar el job con el comando de integracion
+
+Para cuando pete se puede configurar que suba las imagenes y los videos
+
+name: CI e2e workflow
+
+on: pull_request
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm ci
+      - name: Tests e2e
+        run: npm run test:e2e:ci
+      - name: Upload screenshots when specs fail
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: ./cypress/screenshots
+      - name: Upload videos when specs fail
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: videos
+          path: ./cypress/videos

@@ -127,3 +127,104 @@ para que cuando se pare el docker se borre el contenedor
 docker run --name my-app-container -d --rm -p 8080:8083 my-app:1
 
 docker stop my-app-container  (y se habria borrado)
+
+
+Para subir a docker-hub
+primero hacemos un docker login
+docker push 29202625/my-app:2
+
+si hacemos cambios y queremos actualizar la imagen, solo con hacer una nueva build esta 
+docker build -t <user-name>/my-app:3 .
+
+
+
+Para cambiar el nombre de la imagen
+docker tag my-app:2 <user-name>/<app-name>
+
+
+para ejecutar un contenedor del docker hub
+docker run --name my-app-container --rm -d -p 8080:8083 franlopez7/my-app:1
+
+
+
+Para desplegar el codigo en el servidor como heroku
+Preparamos github
+
+git init
+git remote add origin git@github.com...
+git add .
+git commit -m "initial commit"
+git push -u origin main
+
+
+te vas a heroku y creas una nueva app
+en la consola debes logarte y tener token con heroku
+heroku authorizations:create -d <NOMBRE_REPO>
+
+no se añade el token directamente
+se crea un secreto de githup
+github/settting/secrets
+
+
+
+Para desplegar en vercel
+lo primero es instalarlo 
+npm i -g vercel
+
+
+
+y luego en el workflow de github
+env:
+  HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+
+para poder pillar las imagenes de heroku
+IMAGE_NAME: registry.heroku.com/<app-name>/web
+
+
+luego tendriamos algo como 
+
+name: Continuos Deployment workflow
+
+on:
+  push:
+    branches:
+      - master
+env:
+  HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+  IMAGE_NAME: registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Heroku login
+        run: heroku container:login
+      - name: Build docker image
+        run: docker build -t ${{env.IMAGE_NAME}} .
+      - name: Deploy docker image
+        run: docker push ${{env.IMAGE_NAME}}
+      - name: Release
+        run: heroku container:release web -a ${{secrets.HEROKU_APP_NAME}}
+
+
+ si quieres ver los logs de heroku
+ heroku logs -a deploy-heroku-auto
+
+
+
+ En un servidor linux de amazon para utilizar el gestor de paquetes de la distribción que tienen
+ sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo service docker start
+
+se hace luego login 
+vercel login
+
+luego debemos linkar el codigo
+vercel link  poner luego el nombre del proyecto
+
+con eso se crea un .vercel en el folder
+
+luego se crean 3 variables secretas en github con las variables de .vercel
