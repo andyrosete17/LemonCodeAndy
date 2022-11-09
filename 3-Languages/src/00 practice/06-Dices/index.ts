@@ -2,10 +2,12 @@ console.log(
   "==== Practice  =========== 06-Dices ===Start ======================="
 );
 
-const generateRandomNumber = () => {
-  return Math.floor(Math.random() * 10);
-};
-
+const MIN = 1;
+const MAX = 6;
+function generateRandomNumber(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 const runDices = () => {
   let dices: number[] = [undefined, undefined];
 
@@ -13,7 +15,7 @@ const runDices = () => {
     console.log("First we do a reset of the dices");
     dices = [undefined, undefined];
     console.log("Dices reset", dices);
-    dices = dices.map((x) => generateRandomNumber());
+    dices = dices.map((x) => generateRandomNumber(MIN, MAX));
 
     console.log(dices);
 

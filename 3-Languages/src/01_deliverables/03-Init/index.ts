@@ -2,10 +2,10 @@ console.log(
   "==== Deliverables  =========== 03-init === Start ======================="
 );
 
-export const exampleArray = "This is an example array".split(" ");
+export const exampleArray = "This is an example of this".split(" ");
 
 const init = (inputArray) => {
-  const [, ...newArray] = inputArray;
+  const newArray = inputArray.slice(0,-1);
   return newArray;
 };
 
