@@ -13,16 +13,3 @@ export const mapCharacterFromApiToVm = (
   picture: character.image,
   species: character.species,
 });
-
-// export const mapCharacterFromVmToApi = (
-//   character: viewModel.Character
-// ): apiModel.ICharacter =>
-//   ({
-//     ...character,
-//     id: character.id,
-//     name: character.name,
-//     shortDescription: character.description,
-//     characterRating: character.rating,
-//     address1: character.address,
-//     city: character.city,
-//   } as unknown as apiModel.Character);

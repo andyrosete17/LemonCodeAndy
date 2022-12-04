@@ -4,7 +4,6 @@ interface SwitchRoutes {
   root: string;
   charactersCollection: string;
   characterDetails: string;
-  // editHotel: string;
 }
 
 export const switchRoutes: SwitchRoutes = {
